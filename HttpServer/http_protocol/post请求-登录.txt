@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<label for="account">账号</label>
+<input type="text" value="" name="account" class="account" placeholder="请输入账号" />
+<br><br>
+<label for="pwd">密码</label>
+<input type="password" value="" name="pwd" class="pwd" placeholder="请输入密码" />
+<br><br>
+<button class="btn">登录/注册</button>
+</body>
+</html>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $('.btn').click(()=>{
+        $.ajax({
+            url: "http://localhost:54321",
+            method: "POST",
+            data: {
+                account: $('.account').val(),
+                pwd: $('.pwd').val()
+            },
+            success(res){
+                console.log(res)
+            },
+            error(err){
+                console.log(err)
+            }
+        })
+    })
+</script>
+<!-- 结果为
+POST / HTTP/1.1
+Host: localhost:54321
+Connection: keep-alive
+Content-Length: 23
+sec-ch-ua: " Not A;Brand";v="99", "Chromium";v="96", "Microsoft Edge";v="96"
+Accept: */*
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+sec-ch-ua-mobile: ?0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36 Edg/96.0.1054.53
+sec-ch-ua-platform: "Windows"
+Origin: http://localhost:63342
+Sec-Fetch-Site: same-site
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:63342/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,ja;q=0.5
+
+account=ggee&pwd=g44h44 输入的账号为ggee，密码为g44h44
+-->
